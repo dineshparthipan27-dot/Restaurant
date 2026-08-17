@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="restaurant.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="./asset/logo (3).webp" alt="Company Logo" class="logo-img">
+            </a>
+
+
+            <ul class="desktop-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="blog.html" class="nav-link">Blog</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+
+            <a href="login.html" class="login-btn desktop-login">Login</a>
+
+
+            <button class="hamburger" id="hamburger-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+
+
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="index.html" class="mobile-link">Home</a>
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="services.html" class="mobile-link">Services</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
+            <a href="login.html" class="mobile-login-btn">Login</a>
+        </div>
+    </nav>
+
+
+    <!-- ==========================================
+     1. BLOG HERO SECTION (Premium Editorial with BG Image)
+     ========================================== -->
+    <section class="premium-blog-hero" id="hero">
+
+
+        <div class="blog-hero-overlay"></div>
+
+        <div class="container blog-hero-layout">
+
+
+            <div class="blog-hero-text" data-aos="fade-down" data-aos-duration="1500">
+                <h5 class="blog-hero-subtitle text-brandRed">Super Machi Chronicles</h5>
+                <h1 class="blog-giant-title">
+                    Namma <br>
+                    <span class="text-brandYellow">Kadhaigal.</span>
+                </h1>
+                <div class="blog-hero-line" data-aos="zoom-in" data-aos-delay="300"></div>
+                <p class="blog-hero-tagline">
+                    Tales of secret spices, roaring fires, and the royal feasts we create every single day. Dive into
+                    the heart of our kitchen.
+                </p>
+                <a href="404.html" class="btn-blog-explore mt-4" data-aos="fade-up" data-aos-delay="500">
+                    Read Latest <i class="fa-solid fa-book-open"></i>
+                </a>
+            </div>
+
+
+            <div class="blog-hero-visual" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200">
+                <div class="blog-image-frame css-slow-float">
+                    <img src="./asset/re1.webp" alt="Super Machi Stories" class="blog-main-img">
+
+
+                    <div class="blog-frame-border"></div>
+
+
+                    <div class="blog-hero-badge">
+                        <i class="fa-solid fa-fire text-brandRed"></i> Hot Stories
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+     2. FEATURED POST (Cinematic Banner Layout)
+     ========================================== -->
+    <section class="cinematic-featured-section" id="featured">
+        <div class="container">
+
+
+            <div class="section-header text-center" data-aos="fade-down" data-aos-duration="1000">
+                <h2 class="gradient-title">Sirappu Katturai</h2>
+                <p class="header-subtitle">Featured Story of the Week</p>
+                <div class="header-line"></div>
+            </div>
+
+
+            <div class="cinematic-card" data-aos="zoom-in" data-aos-duration="1500">
+
+
+                <img src="./asset/r13.webp" alt="Biryani Master" class="cinematic-bg">
+
+
+                <div class="cinematic-overlay"></div>
+
+
+                <div class="cinematic-badge">
+                    <i class="fa-solid fa-star text-brandYellow"></i> Editor's Pick
+                </div>
+
+
+                <div class="cinematic-content">
+                    <div class="meta-row">
+                        <span><i class="fa-regular fa-calendar"></i> Aug 17, 2026</span>
+                        <span class="meta-dot">•</span>
+                        <span><i class="fa-regular fa-clock"></i> 5 Min Read</span>
+                    </div>
+
+                    <h2 class="cinematic-title">The Secret Behind Our 12-Hour Marinated Mutton Biryani</h2>
+
+                    <p class="cinematic-excerpt">
+                        Patience is an ingredient you can't buy in any market. Discover how our Head Chef brings a
+                        100-year-old traditional recipe to life every single morning before the sun even rises.
+                    </p>
+
+                    <a href="404.html" class="btn-read-cinematic">
+                        Read Full Article <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+     3. CULINARY SECRETS (Premium Alternating Layout)
+     ========================================== -->
+    <section class="premium-secrets-section" id="secrets">
+        <div class="container">
+
+
+
+
+            <div class="secrets-alternating-layout">
+
+
+                <div class="secret-row" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="secret-visual">
+                        <img src="./asset/r14.webp" alt="Spices">
+                        <span class="secret-badge bg-yellow-gradient">Ingredients</span>
+                    </div>
+                    <div class="secret-info">
+                        <h3 class="secret-title">Why We Source Our Chillies Directly From Guntur</h3>
+                        <p class="secret-desc">The perfect fiery red color and intense heat of our curries don't come
+                            from a factory packet. It comes straight from the vibrant farms of Andhra, hand-picked and
+                            sun-dried.</p>
+
+                        <a href="404.html" class="btn-solid-gold">Read Recipe <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="secret-row reverse-row" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                    <div class="secret-visual">
+                        <img src="./asset/r15.webp" alt="Dum Cooking">
+                        <span class="secret-badge bg-red-gradient">Techniques</span>
+                    </div>
+                    <div class="secret-info">
+                        <h3 class="secret-title">The Art of Dum Cooking: Slow Fire Magic</h3>
+                        <p class="secret-desc">Sealing the flavors with thick dough and letting the premium meat cook
+                            entirely in its own juices over slow charcoal. This is how authentic Biryani is born in our
+                            kitchens.</p>
+
+                        <a href="404.html" class="btn-solid-red">Read Recipe <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+     4. CUSTOMER DIARIES (Premium Glassmorphism)
+     ========================================== -->
+    <section class="premium-diaries-section" id="diaries">
+        <div class="container">
+
+
+            <div class="section-header text-center" data-aos="fade-down" data-aos-duration="1000">
+                <h4 class="section-top-label text-brandYellow">Customer Diaries</h4>
+                <h2 class="gradient-title">Makkal Manasu.</h2>
+                <p class="header-subtitle">Stories from our beloved guests</p>
+                <div class="header-line" style="margin: 0 auto;"></div>
+            </div>
+
+
+            <div class="master-diary-card" data-aos="zoom-in" data-aos-duration="1200">
+
+                <i class="fa-solid fa-quote-right watermark-quote"></i>
+
+                <div class="master-diary-content">
+                    <p class="master-quote-text">
+                        "I traveled 40 kilometers just to taste the Super Machi Mutton Chukka. It didn't just satisfy my
+                        hunger, it brought back vivid memories of my grandmother's cooking. Truly a royal feast that
+                        respects our tradition!"
+                    </p>
+                    <div class="diary-author-profile">
+                        <div class="author-avatar-glow">
+                            <img src="./asset/man2.webp" alt="Customer">
+                        </div>
+                        <div class="author-details">
+                            <h4 class="author-name text-brandRed">Karthik R.</h4>
+                            <span class="author-title">Food Vlogger & Loyal Guest</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="diaries-twin-grid">
+
+
+                <div class="twin-diary-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <i class="fa-solid fa-quote-left small-quote-icon text-brandYellow"></i>
+                    <p class="twin-quote-text">"The Biryani here has a soul. You can taste the hours of slow cooking and
+                        the premium spices in every single bite. Hands down the best in the city."</p>
+                    <div class="twin-author">
+                        <img src="./asset/woman1.webp" alt="Customer">
+                        <div>
+                            <h5 class="twin-author-name">Priya S.</h5>
+                            <span class="twin-author-title">Local Foodie</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="twin-diary-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <i class="fa-solid fa-quote-left small-quote-icon text-brandRed"></i>
+                    <p class="twin-quote-text">"We booked the Thani Kudumba Arai for our anniversary. The hospitality
+                        made us feel like absolute royalty. An unforgettable dining experience!"</p>
+                    <div class="twin-author">
+                        <img src="./asset/m2 (2).webp" alt="Customer">
+                        <div>
+                            <h5 class="twin-author-name">Arjun & Family</h5>
+                            <span class="twin-author-title">Regular Patrons</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+     5. BEHIND THE KITCHEN (Documentary Trailer Layout)
+     ========================================== -->
+    <section class="premium-bts-section" id="kitchen">
+        <div class="container text-center">
+
+            <div class="section-header" data-aos="fade-down" data-aos-duration="1000">
+                <h4 class="section-top-label text-brandRed">Aduppangaraiyil Oru Naal</h4>
+                <h2 class="gradient-title">Behind The Fire.</h2>
+                <div class="header-line" style="margin: 0 auto;"></div>
+            </div>
+        </div>
+
+        <div class="container bts-cinema-container">
+
+
+            <div class="cinema-screen" data-aos="zoom-in" data-aos-duration="1500">
+
+                <img src="./asset/r4.webp" alt="Kitchen Rush" class="bts-bg-img">
+
+
+                <div class="cinema-overlay-dark"></div>
+
+
+                <a href="404.html" class="play-btn-glass css-pulse-red">
+                    <i class="fa-solid fa-play"></i>
+                </a>
+
+
+                <div class="video-duration">
+                    <i class="fa-solid fa-circle-play text-brandRed"></i> 10:45 Min
+                </div>
+            </div>
+
+
+            <div class="docu-details" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                <h3 class="docu-title">Inside the Chaos: Friday Night Rush at Super Machi</h3>
+                <p class="docu-desc">
+                    Ever wondered how we serve 500+ guests on a busy Friday night without missing a single beat? Step
+                    inside our kitchen, feel the intense heat, hear the sizzling pans, and meet the unsung heroes of our
+                    restaurant.
+                </p>
+
+
+                <div class="docu-cast">
+                    <span class="cast-badge"><i class="fa-solid fa-fire-burner text-brandYellow"></i> Starring: Head
+                        Chef Muthu</span>
+                    <span class="cast-badge"><i class="fa-solid fa-location-dot text-brandRed"></i> Location: Main
+                        Kitchen</span>
+                    <span class="cast-badge">Status: <span class="text-brandRed">LIVE ACTION</span></span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- ==========================================
+     6. EVENTS & OFFERS (Premium VIP Ticket Layout)
+     ========================================== -->
+    <section class="premium-events-section" id="events">
+        <div class="container">
+
+
+            <div class="section-header text-center" data-aos="fade-down" data-aos-duration="1000">
+                <h4 class="section-top-label text-brandYellow">Kondaattangal</h4>
+                <h2 class="gradient-title">Events & Offers.</h2>
+                <p class="header-subtitle">Exclusive feasts and upcoming celebrations</p>
+                <div class="header-line" style="margin: 0 auto;"></div>
+            </div>
+
+
+            <div class="events-ticket-wrapper">
+
+
+                <div class="event-ticket-card" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="ticket-visual">
+                        <img src="./asset/r12.webp" alt="Seafood Festival">
+                        <span class="ticket-tag bg-red-gradient">Limited Seats</span>
+                    </div>
+
+                    <div class="ticket-info">
+                        <h3 class="ticket-title">The Grand Machi Seafood Festival</h3>
+                        <p class="ticket-desc">Join us for a 3-day coastal extravaganza featuring fresh catches, fiery
+                            marinades, and our signature banana leaf seafood meals. A true tribute to the Bay of Bengal.
+                        </p>
+                        <div class="ticket-meta">
+                            <span><i class="fa-solid fa-clock text-brandRed"></i> 7:00 PM - 11:00 PM</span>
+                            <span><i class="fa-solid fa-location-dot text-brandRed"></i> Main Dining Hall</span>
+                        </div>
+                    </div>
+
+                    <div class="ticket-action">
+                        <div class="ticket-date">
+                            <span class="t-month">AUG</span>
+                            <span class="t-day text-brandRed">25</span>
+                        </div>
+                        <a href="404.html" class="btn-ticket-red">Book Table <i class="fa-solid fa-ticket"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="event-ticket-card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                    <div class="ticket-visual">
+                        <img src="./asset/r16.webp" alt="Midnight Biryani">
+                        <span class="ticket-tag bg-yellow-gradient">Weekend Special</span>
+                    </div>
+
+                    <div class="ticket-info">
+                        <h3 class="ticket-title">Midnight Biryani Feast (Live Music)</h3>
+                        <p class="ticket-desc">Experience the magic of Super Machi at midnight! Piping hot dum biryani
+                            straight from the pot, accompanied by soothing live instrumental music under the stars.</p>
+                        <div class="ticket-meta">
+                            <span><i class="fa-solid fa-clock text-brandYellow"></i> 11:30 PM - 2:00 AM</span>
+                            <span><i class="fa-solid fa-music text-brandYellow"></i> Rooftop Ambience</span>
+                        </div>
+                    </div>
+
+                    <div class="ticket-action">
+                        <div class="ticket-date">
+                            <span class="t-month">SEP</span>
+                            <span class="t-day text-brandYellow">05</span>
+                        </div>
+                        <a href="404.html" class="btn-ticket-gold">Get Pass <i class="fa-solid fa-ticket"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+     7. NEWSLETTER CTA (Premium VIP Invite)
+     ========================================== -->
+    <section class="premium-newsletter-section" id="subscribe">
+        <div class="container text-center" data-aos="zoom-in" data-aos-duration="1200">
+
+            <div class="newsletter-premium-box">
+
+                <div class="newsletter-icon-wrapper css-slow-float">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+
+                <h2 class="newsletter-title">Kudumbathil Inaiyunga</h2>
+                <h4 class="newsletter-subtitle text-brandYellow">Join The Super Machi Family</h4>
+
+                <p class="newsletter-desc">
+                    Get exclusive access to our secret recipes, early VIP event passes, and special weekend offers
+                    delivered straight to your inbox. No spam, only pure flavor.
+                </p>
+
+
+                <form class="premium-subscribe-form" id="newsletterForm" novalidate>
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+
+                        <input type="email" id="emailInput" placeholder="Enter your email address" required>
+                    </div>
+
+                    <button type="submit" class="btn-subscribe-premium" id="subBtn">
+                        <span>Subscribe Now</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+
+                <div id="formMessage" class="form-message"></div>
+
+                <p class="newsletter-disclaimer"><i class="fa-solid fa-shield-halved"></i> Join 10,000+ foodies in our
+                    community. We respect your privacy.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="premium-footer" id="contact">
+
+
+        <div class="footer-glow-line"></div>
+
+        <div class="container footer-layout">
+
+
+            <div class="footer-brand" data-aos="fade-up" data-aos-duration="1000">
+                <a href="index.html" class="logo-container">
+                    <img src="./asset/logo (3).webp" alt="Company Logo" class="logo-img">
+                </a>
+                <p class="footer-desc">
+                    Elevating the authentic taste of South India into a premium dining experience. Taste the tradition,
+                    feel the royalty.
+                </p>
+                <div class="social-links">
+                    <a href="404.html" class="social-icon gs-hover-float"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html" class="social-icon gs-hover-float"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="404.html" class="social-icon gs-hover-float"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="404.html" class="social-icon gs-hover-float"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+
+            <div class="footer-quick-links" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                <h3 class="footer-heading">Quick Links</h3>
+                <div class="quick-links-list">
+                    <a href="index.html" class="q-link"><i class="fa-solid fa-angle-right"></i> Home</a>
+                    <a href="about.html" class="q-link"><i class="fa-solid fa-angle-right"></i> About</a>
+                    <a href="services.html" class="q-link"><i class="fa-solid fa-angle-right"></i> Services</a>
+                    <a href="blog.html" class="q-link"><i class="fa-solid fa-angle-right"></i> Blog</a>
+                    <a href="contact.html" class="q-link"><i class="fa-solid fa-angle-right"></i> Contact</a>
+                </div>
+            </div>
+
+
+            <div class="footer-contact" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <h3 class="footer-heading">Thodarbu Kolla</h3>
+                <ul class="contact-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot contact-icon"></i>
+                        <div>
+                            <strong>Our Location</strong>
+                            <p>123 Royal Culinary Avenue,<br>Food City, Tamil Nadu.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone contact-icon"></i>
+                        <div>
+                            <strong>Reservation</strong>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope contact-icon"></i>
+                        <div>
+                            <strong>Email Us</strong>
+                            <p>hello@supermachi.com</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Super Restaurant.</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 800
+        });
+    </script>
+
+    <script>
+
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevents page reload
+
+            const emailInput = document.getElementById('emailInput');
+            const messageDiv = document.getElementById('formMessage');
+            const btn = document.getElementById('subBtn');
+            const emailValue = emailInput.value.trim();
+
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailValue === '') {
+
+                showError('Machi, Email address empty-a irukku! Fill pannunga.');
+            } else if (!emailRegex.test(emailValue)) {
+
+                showError('Oops! Proper-ana email format-la type pannunga machi.');
+            } else {
+
+                emailInput.classList.remove('shake-error');
+                emailInput.style.borderColor = '#FFB703';
+
+
+                messageDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i> Super Machi! Successfully subscribed to our family.';
+                messageDiv.className = 'form-message msg-success';
+                window.location.href = '404.html'
+
+
+                btn.innerHTML = '<span>Welcome!</span> <i class="fa-solid fa-check"></i>';
+                btn.style.setProperty('background', 'linear-gradient(135deg, #FFB703, #e5a400)', 'important');
+                btn.style.setProperty('color', '#111112', 'important');
+                btn.style.setProperty('box-shadow', '0 10px 25px rgba(255,183,3,0.5)', 'important');
+
+
+                setTimeout(() => {
+                    emailInput.value = '';
+                    emailInput.style.borderColor = '#333';
+                    messageDiv.innerHTML = '';
+                    btn.innerHTML = '<span>Subscribe Now</span> <i class="fa-solid fa-paper-plane"></i>';
+                    btn.style = ''; // Clear inline styles
+                }, 400);
+            }
+
+
+            function showError(msg) {
+                messageDiv.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${msg}`;
+                messageDiv.className = 'form-message msg-error';
+
+
+                emailInput.classList.remove('shake-error');
+                void emailInput.offsetWidth; // Trigger DOM reflow
+                emailInput.classList.add('shake-error');
+            }
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

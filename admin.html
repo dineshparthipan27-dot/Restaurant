@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Super Machi | Admin Dashboard</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+
+            --primary-color: #E63946;
+            --primary-light: rgba(230, 57, 70, 0.1);
+            --primary-dark: #c52834;
+            --secondary-color: #FFB703;
+            --secondary-light: rgba(255, 183, 3, 0.15);
+
+
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg-color: #f8fafc;
+
+
+            --sidebar-bg: #111112;
+            --sidebar-text: #A0A0A0;
+            --sidebar-hover: #1A1A1D;
+
+
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            position: fixed;
+            height: 100vh;
+            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+            border-right: 1px solid rgba(255, 183, 3, 0.1);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 17, 18, 0.8);
+            z-index: 999;
+            backdrop-filter: blur(3px);
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: #080809;
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #FFFFFF;
+            font-size: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-da span {
+            color: var(--secondary-color);
+        }
+
+        .close-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .menu-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            cursor: pointer;
+        }
+
+        .menu-link i {
+            font-size: 18px;
+            width: 25px;
+            text-align: center;
+        }
+
+        .menu-link:hover {
+            background-color: var(--sidebar-hover);
+            color: var(--secondary-color);
+        }
+
+        .menu-link.active {
+            background-color: var(--primary-light);
+            color: #FFFFFF;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .menu-link.active i {
+            color: var(--primary-color);
+        }
+
+        .sidebar-bottom {
+            padding: 15px 0 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logout-btn {
+            color: #ef4444;
+        }
+
+        .logout-btn:hover {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border-left-color: #ef4444;
+        }
+
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+            min-height: 100vh;
+            width: calc(100% - 260px);
+        }
+
+        .top-header {
+            background-color: var(--card-bg);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 998;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border: none;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .greeting h1 {
+            font-size: 22px;
+            color: var(--text-dark);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .welcome-name {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: right;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: var(--primary-color);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .user-email {
+            font-size: 14px;
+            color: var(--text-dark);
+            font-weight: 700;
+            display: block;
+        }
+
+        .user-avatar i {
+            font-size: 40px;
+            color: var(--secondary-color);
+        }
+
+
+        .view-section {
+            display: none;
+            padding: 30px;
+            animation: fadeIn 0.4s ease-in-out;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .view-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 19px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            border-left: 5px solid var(--primary-color);
+            padding-left: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .scroll-anim {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .scroll-anim.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 10px 25px rgba(255, 183, 3, 0.1);
+        }
+
+        .stat-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            flex-shrink: 0;
+        }
+
+        .stat-details h3 {
+            font-size: 26px;
+            margin-bottom: 4px;
+            color: var(--text-dark);
+            font-weight: 900;
+        }
+
+        .stat-details p {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+
+        .content-box {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+            width: 100%;
+        }
+
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: var(--primary-color);
+            background-color: #f8fafc;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .error-msg {
+            color: #ef4444;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+            font-weight: 700;
+        }
+
+        .input-error {
+            border-color: #ef4444 !important;
+        }
+
+        .success-msg {
+            color: #166534;
+            background: #dcfce7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            display: none;
+            text-align: center;
+            border: 1px solid #bbf7d0;
+        }
+
+
+        .main-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 14px 24px;
+            width: 100%;
+            font-size: 15px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 700;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--primary-light);
+        }
+
+        .action-btn {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: #FFF;
+        }
+
+        .action-btn:disabled {
+            background: #e2e8f0;
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+
+        .btn-yellow {
+            background: var(--secondary-light);
+            color: #b45309;
+        }
+
+        .btn-yellow:hover {
+            background: var(--secondary-color);
+            color: #000;
+        }
+
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            min-width: 600px;
+        }
+
+        th,
+        td {
+            padding: 16px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        th {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .status.ready {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.cooking {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .status.new {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+
+        .timeline {
+            margin-top: 20px;
+            border-left: 3px solid #e2e8f0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px #e2e8f0;
+        }
+
+        .timeline-item h4 {
+            font-size: 15px;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-weight: 800;
+        }
+
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .time-badge {
+            font-size: 11px;
+            background: #f1f5f9;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-right: 5px;
+        }
+
+
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .menu-toggle,
+            .close-btn {
+                display: block;
+            }
+
+            .two-col-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .top-header {
+                padding: 15px;
+            }
+
+            .view-section {
+                padding: 15px;
+                gap: 20px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .greeting h1 {
+                font-size: 18px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-box {
+                padding: 20px;
+            }
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 150px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .logo-da {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo-da i {
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-header">
+                    <div class="logo-da">
+                        <img src="./asset/logo (3).webp" alt="Company Logo" class="logo-img">
+                    </div>
+                    <button class="close-btn" id="closeSidebar"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <ul class="sidebar-menu">
+                    <li><a class="menu-link active" data-target="dashboard-view">
+                            <i class="fa-solid fa-chart-line"></i> Dashboard
+                        </a></li>
+                    <li><a class="menu-link" data-target="orders-view">
+                            <i class="fa-solid fa-bell-concierge"></i> Live Orders
+                        </a></li>
+                    <li><a class="menu-link" data-target="reservations-view">
+                            <i class="fa-solid fa-chair"></i> Table Reservations
+                        </a></li>
+                    <li><a class="menu-link" data-target="menu-view">
+                            <i class="fa-solid fa-utensils"></i> Menu Management
+                        </a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-bottom">
+                <a href="login.html" class="menu-link logout-btn">
+                    <i class="fa-solid fa-power-off"></i> Logout
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+
+            <header class="top-header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="openSidebar">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="greeting">
+                        <h1 id="page-title">Dashboard <span class="welcome-name">| Overview</span></h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="user-role">Restaurant Manager</span>
+                            <span class="user-email" id="displayEmail">admin@supermachi.com</span>
+                        </div>
+                        <div class="user-avatar">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+
+            <div id="dashboard-view" class="view-section active">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-indian-rupee-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>45,200</h3>
+                            <p>Today's Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--secondary-light); color: #d97706;">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>24</h3>
+                            <p>Active Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #dcfce7; color: #166534;">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>12/15</h3>
+                            <p>Tables Occupied</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <h2 class="section-title">Revenue Graph (Today)</h2>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+
+            <div id="orders-view" class="view-section">
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #fee2e2; color: #991b1b;">
+                            <i class="fa-solid fa-bell"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>05</h3>
+                            <p>New Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #fef9c3; color: #854d0e;">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>12</h3>
+                            <p>Cooking in Kitchen</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="two-col-grid">
+
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Add Walk-in Order</h2>
+                        <form id="orderForm" novalidate>
+                            <div id="formSuccess" class="success-msg">
+                                <i class="fa-solid fa-circle-check"></i> Order sent to kitchen!
+                            </div>
+                            <div class="input-group">
+                                <label>Customer Name / Table No.</label>
+                                <input type="text" id="custInput" placeholder="E.g., Table 4 or John" required>
+                                <div class="error-msg" id="custError">Please enter table or name.</div>
+                            </div>
+                            <div class="input-group">
+                                <label>Order Category</label>
+                                <select id="categorySelect" required>
+                                    <option value="" selected disabled>Select Category</option>
+                                    <option value="biryani">Biryani & Rice</option>
+                                    <option value="starters">Starters & Tandoori</option>
+                                    <option value="beverages">Beverages & Desserts</option>
+                                </select>
+                                <div class="error-msg" id="categoryError">Select a category.</div>
+                            </div>
+                            <div class="input-group">
+                                <label>Order Type</label>
+                                <select id="typeSelect" required>
+                                    <option value="" selected disabled>Select Order Type</option>
+                                    <option value="dinein">Dine-in</option>
+                                    <option value="takeaway">Takeaway / Parcel</option>
+                                    <option value="zomato">Online Delivery</option>
+                                </select>
+                                <div class="error-msg" id="typeError">Select order type.</div>
+                            </div>
+                            <button type="submit" class="main-btn">
+                                <i class="fa-solid fa-paper-plane"></i> Push to Kitchen
+                            </button>
+                        </form>
+                    </section>
+
+
+                    <section class="content-box scroll-anim">
+                        <h2 class="section-title">Live Kitchen Feed</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h4><span class="time-badge">14:30</span> Order Ready</h4>
+                                <p>Table 4 - <strong style="color: var(--primary-color);">Mutton Dum Biryani</strong> is
+                                    ready to serve.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4><span class="time-badge">14:15</span> New Online Order</h4>
+                                <p>Zomato Order #4022 received. Passed to Master Muthu.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4><span class="time-badge">13:50</span> Low Stock Alert</h4>
+                                <p>Chicken 65 marination is running low. Kitchen notified.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+
+            <div id="reservations-view" class="view-section">
+
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>18</h3>
+                            <p>Today's Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--secondary-light); color: #d97706;">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>64</h3>
+                            <p>Total Guests Expected</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #e0e7ff; color: #4f46e5;">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>03</h3>
+                            <p>VIP/Special Events</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                        <h2 class="section-title" style="margin-bottom: 0;">Today's Table Reservations</h2>
+                        <div>
+                            <a href="404.html" class="action-btn"
+                                style="background: var(--primary-color); color: #FFF;">Today</a>
+                            <a href="404.html" class="action-btn">Tomorrow</a>
+                            <a href="404.html" class="action-btn">This Week</a>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Customer Details</th>
+                                    <th>Table & Requirements</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>07:00 PM</strong></td>
+                                    <td>
+                                        <strong>Vijay Kumar</strong><br>
+                                        <span class="text-muted"><i class="fa-solid fa-phone"></i> +91 98765
+                                            43210</span>
+                                    </td>
+                                    <td><i class="fa-solid fa-users text-muted"></i> Family Table (6 Pax)</td>
+                                    <td><span class="status ready">Checked In</span></td>
+                                    <td><button class="action-btn" disabled>Seated</button></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>07:30 PM</strong></td>
+                                    <td>
+                                        <strong>Arjun Prakash</strong><br>
+                                        <span class="text-muted"><i class="fa-solid fa-phone"></i> +91 87654
+                                            32109</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-cake-candles text-muted"></i> Booth Table (4 Pax)<br>
+                                        <span class="text-muted" style="font-size: 11px;">Note: Birthday
+                                            Celebration</span>
+                                    </td>
+                                    <td><span class="status ready">Confirmed</span></td>
+                                    <td><a href="404.html" class="action-btn">Assign Table</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>08:15 PM</strong></td>
+                                    <td>
+                                        <strong>Priya Ramesh</strong><br>
+                                        <span class="text-muted"><i class="fa-solid fa-phone"></i> +91 76543
+                                            21098</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-heart text-muted"></i> Balcony Seat (2 Pax)<br>
+                                        <span class="text-muted" style="font-size: 11px;">Note: Anniversary</span>
+                                    </td>
+                                    <td><span class="status cooking">Waiting</span></td>
+                                    <td><a href="404.html" class="action-btn">Notify Ready</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>08:30 PM</strong></td>
+                                    <td>
+                                        <strong>Karthik Sivakumar</strong><br>
+                                        <span class="text-muted"><i class="fa-solid fa-phone"></i> +91 65432
+                                            10987</span>
+                                    </td>
+                                    <td><i class="fa-solid fa-chair text-muted"></i> Standard Table (4 Pax)</td>
+                                    <td><span class="status ready">Confirmed</span></td>
+                                    <td><a href="404.html" class="action-btn">Assign Table</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>09:00 PM</strong></td>
+                                    <td>
+                                        <strong>TechCorp India (VIP)</strong><br>
+                                        <span class="text-muted"><i class="fa-solid fa-envelope"></i>
+                                            hr@techcorp.in</span>
+                                    </td>
+                                    <td>
+                                        <i class="fa-solid fa-crown text-muted"></i> VIP Dining Room (15 Pax)<br>
+                                        <span class="text-muted" style="font-size: 11px;">Note: Corporate Dinner</span>
+                                    </td>
+                                    <td><span class="status new">Pending Advance</span></td>
+                                    <td><a href="404.html" class="action-btn btn-yellow">Follow Up</a></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>09:45 PM</strong></td>
+                                    <td>
+                                        <strong>Surya</strong><br>
+                                        <span class="text-muted"><i class="fa-solid fa-phone"></i> +91 99887
+                                            76655</span>
+                                    </td>
+                                    <td><i class="fa-solid fa-users text-muted"></i> Group Table (8 Pax)</td>
+                                    <td><span class="status new">Cancelled</span></td>
+                                    <td><button class="action-btn" disabled>Cleared</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+
+            <div id="menu-view" class="view-section">
+
+                <section class="stats-grid scroll-anim">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: var(--primary-light); color: var(--primary-color);">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>142</h3>
+                            <p>Total Menu Items</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #fee2e2; color: #991b1b;">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>04</h3>
+                            <p>Items Out of Stock</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: #dcfce7; color: #166534;">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>45%</h3>
+                            <p>Vegetarian Options</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-box scroll-anim">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                        <h2 class="section-title" style="margin-bottom: 0;">Live Menu Inventory</h2>
+                        <button class="main-btn" style="width: auto; margin-top: 0; padding: 10px 20px;">
+                            <i class="fa-solid fa-plus"></i> Add New Dish
+                        </button>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item Image & Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock Availability</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/r16.webp') center/cover;">
+                                            </div>
+                                            <strong>Chef's Royal Mutton Biryani</strong>
+                                        </div>
+                                    </td>
+                                    <td>Biryani & Rice</td>
+                                    <td><strong>₹350</strong></td>
+                                    <td><span class="status ready">Available (40 Portions)</span></td>
+                                    <td><a href="404.html" class="action-btn">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/d1\ \(4\).webp') center/cover;">
+                                            </div>
+                                            <strong>Chicken 65 (Boneless)</strong>
+                                        </div>
+                                    </td>
+                                    <td>Starters (Non-Veg)</td>
+                                    <td><strong>₹220</strong></td>
+                                    <td><span class="status cooking">Low Stock (5 Portions)</span></td>
+                                    <td><a href="404.html" class="action-btn btn-yellow">Update</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/r3.webp') center/cover;">
+                                            </div>
+                                            <strong>Prawn Pepper Fry</strong>
+                                        </div>
+                                    </td>
+                                    <td>Seafood Specials</td>
+                                    <td><strong>₹320</strong></td>
+                                    <td><span class="status new">Sold Out</span></td>
+                                    <td><a href="404.html" class="action-btn">Restock</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/d2\ \(4\).webp') center/cover;">
+                                            </div>
+                                            <strong>Paneer Tikka Masala</strong>
+                                        </div>
+                                    </td>
+                                    <td>Main Course (Veg)</td>
+                                    <td><strong>₹240</strong></td>
+                                    <td><span class="status ready">Available</span></td>
+                                    <td><a href="404.html" class="action-btn">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/d3\ \(3\).webp') center/cover;">
+                                            </div>
+                                            <strong>Garlic Naan</strong>
+                                        </div>
+                                    </td>
+                                    <td>Breads</td>
+                                    <td><strong>₹55</strong></td>
+                                    <td><span class="status ready">Available</span></td>
+                                    <td><a href="404.html" class="action-btn">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/d4.webp') center/cover;">
+                                            </div>
+                                            <strong>Royal Jigarthanda</strong>
+                                        </div>
+                                    </td>
+                                    <td>Desserts & Drinks</td>
+                                    <td><strong>₹180</strong></td>
+                                    <td><span class="status ready">Available</span></td>
+                                    <td><a href="404.html" class="action-btn">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="display: flex; align-items: center; gap: 10px;">
+                                            <div
+                                                style="width: 40px; height: 40px; border-radius: 8px; background: url('./asset/d5.webp') center/cover;">
+                                            </div>
+                                            <strong>Fresh Lime Soda (Sweet/Salt)</strong>
+                                        </div>
+                                    </td>
+                                    <td>Beverages</td>
+                                    <td><strong>₹80</strong></td>
+                                    <td><span class="status new">Sold Out (Lemons out of stock)</span></td>
+                                    <td><a href="404.html" class="action-btn btn-yellow">Update</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+
+    <script>
+
+        const emailValue = localStorage.getItem("UserMail");
+        const displayEmail = emailValue || "admin@supermachi.com";
+        document.getElementById('displayEmail').textContent = displayEmail;
+
+
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const openSidebarBtn = document.getElementById('openSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
+
+        function openSidebar() { sidebar.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeSidebar() { sidebar.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = 'auto'; }
+
+        openSidebarBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+
+
+        const menuLinks = document.querySelectorAll('.sidebar-menu .menu-link');
+        const views = document.querySelectorAll('.view-section');
+        const pageTitle = document.getElementById('page-title');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                if (this.classList.contains('active')) return;
+
+
+                menuLinks.forEach(l => l.classList.remove('active'));
+                views.forEach(v => v.classList.remove('active'));
+
+
+                this.classList.add('active');
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+
+
+                let titleText = this.innerText.trim();
+                pageTitle.innerHTML = `${titleText} <span class="welcome-name">| Admin</span>`;
+
+                if (window.innerWidth <= 992) { closeSidebar(); }
+                triggerAnimations();
+            });
+        });
+
+
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        const trafficChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['11:00 AM', '01:00 PM', '03:00 PM', '05:00 PM', '07:00 PM', '09:00 PM', '11:00 PM'],
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [2500, 15000, 22000, 12000, 28000, 45200, 38000],
+                    borderColor: '#E63946',
+                    backgroundColor: 'rgba(230, 57, 70, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#FFB703',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('show'); }
+            });
+        }, { threshold: 0.1 });
+
+        function triggerAnimations() {
+            const animElements = document.querySelectorAll('.scroll-anim');
+            animElements.forEach(el => {
+                el.classList.remove('show');
+                observer.observe(el);
+            });
+        }
+        triggerAnimations();
+
+
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const custInput = document.getElementById('custInput');
+            const categorySelect = document.getElementById('categorySelect');
+            const typeSelect = document.getElementById('typeSelect');
+
+            const custError = document.getElementById('custError');
+            const categoryError = document.getElementById('categoryError');
+            const typeError = document.getElementById('typeError');
+            const formSuccess = document.getElementById('formSuccess');
+
+            let isValid = true;
+
+
+            custInput.classList.remove('input-error');
+            categorySelect.classList.remove('input-error');
+            typeSelect.classList.remove('input-error');
+            custError.style.display = 'none';
+            categoryError.style.display = 'none';
+            typeError.style.display = 'none';
+            formSuccess.style.display = 'none';
+
+            if (custInput.value.trim().length < 2) {
+                custInput.classList.add('input-error');
+                custError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (categorySelect.value === '') {
+                categorySelect.classList.add('input-error');
+                categoryError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (typeSelect.value === '') {
+                typeSelect.classList.add('input-error');
+                typeError.style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                formSuccess.style.display = 'block';
+                setTimeout(() => {
+                    this.reset();
+                    formSuccess.style.display = 'none';
+                    window.location.href = '404.html'
+                }, 200);
+            }
+        });
+    </script>
+</body>
+
+</html>

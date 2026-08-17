@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Super Machi</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #080809;
+            overflow: hidden;
+        }
+
+
+        .premium-404-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+        }
+
+
+        .error-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(12, 12, 13, 0.95) 0%, rgba(12, 12, 13, 0.85) 100%);
+            z-index: 1;
+        }
+
+        .error-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+
+        .error-number-wrapper {
+            margin-bottom: -20px;
+        }
+
+        .neon-404 {
+            font-size: clamp(8rem, 15vw, 12rem);
+            font-weight: 900;
+            margin: 0;
+            line-height: 1;
+
+            background: linear-gradient(to bottom, #E63946, #FFB703);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(230, 57, 70, 0.6));
+            animation: neonPulse 2s infinite alternate;
+        }
+
+
+        @keyframes neonPulse {
+            0% {
+                filter: drop-shadow(0 0 20px rgba(230, 57, 70, 0.4));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 50px rgba(255, 183, 3, 0.8));
+            }
+        }
+
+
+        .css-float-anim {
+            animation: float404 4s ease-in-out infinite;
+        }
+
+        @keyframes float404 {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+
+        .error-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: #FFFFFF;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .text-brandYellow {
+            color: #FFB703 !important;
+            text-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+        }
+
+        .error-desc {
+            font-size: 1.2rem;
+            color: #B0B0B0;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        .error-action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+
+        .btn-outline-gold {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            background: transparent !important;
+            color: #FFB703 !important;
+            border: 2px solid #FFB703 !important;
+            padding: 15px 35px !important;
+            border-radius: 50px !important;
+            font-weight: 900 !important;
+            font-size: 1.1rem !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .btn-outline-gold:hover {
+            background: #FFB703 !important;
+            color: #111112 !important;
+            box-shadow: 0 10px 25px rgba(255, 183, 3, 0.5) !important;
+            transform: translateY(-5px) !important;
+        }
+
+
+        .btn-royal-solid-red {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            background: linear-gradient(135deg, #E63946, #c52834) !important;
+            color: #FFF !important;
+            border: none !important;
+            padding: 15px 35px !important;
+            border-radius: 50px !important;
+            font-weight: 900 !important;
+            font-size: 1.1rem !important;
+            text-decoration: none !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4) !important;
+        }
+
+        .btn-royal-solid-red:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 15px 35px rgba(230, 57, 70, 0.6) !important;
+        }
+
+
+        @media (max-width: 768px) {
+            .error-desc {
+                font-size: 1.05rem;
+            }
+
+            .error-action-buttons {
+                flex-direction: column-reverse;
+                gap: 15px;
+            }
+
+            .btn-outline-gold,
+            .btn-royal-solid-red {
+                width: 100%;
+                justify-content: center;
+                padding: 18px 20px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================
+         404 ERROR PAGE (Cinematic Neon Layout)
+         ========================================== -->
+    <section class="premium-404-section">
+
+
+        <div class="error-bg-overlay"></div>
+
+        <div class="container error-content text-center">
+
+
+            <div class="error-number-wrapper css-float-anim">
+                <h1 class="neon-404">404</h1>
+            </div>
+
+            <h2 class="error-title">Aiyayo! Vazhi Maariteenga <span class="text-brandYellow">Machi...</span></h2>
+
+            <p class="error-desc">
+                The page you are looking for has either been eaten by our hungry chef or doesn't exist on our menu
+                anymore. Let's get you back to the feast!
+            </p>
+
+
+            <div class="error-action-buttons">
+
+                <button onclick="goBack()" class="btn-outline-gold">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Go Back
+                </button>
+
+
+                <a href="index.html" class="btn-royal-solid-red">
+                    Back to Home <i class="fa-solid fa-house"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <script>
+        function goBack() {
+
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+
+</html>
