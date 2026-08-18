@@ -657,6 +657,67 @@
      z-index: 2;
  }
 
+ /* =========================================================
+   SECTION HEADER STYLES (Makkal Manasu)
+   ========================================================= */
+.section-header {
+    margin-bottom: 40px;
+    text-align: center; /* Matches the image alignment */
+}
+
+/* "Customer Diaries" */
+.section-top-label {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+}
+
+.text-brandYellow {
+    color: #FFB703 !important; /* Brand Yellow */
+}
+
+/* "Makkal Manasu." */
+.gradient-title {
+    font-size: clamp(2.5rem, 5vw, 3.8rem); /* Auto-scales on mobile */
+    font-weight: 900;
+    color: #FFFFFF; /* Changed to White for better visibility on dark bg */
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+/* "Stories from our beloved guests" */
+.header-subtitle {
+    font-size: 1.15rem;
+    color: #888888; /* Muted Grey */
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* The small decorative line below the text */
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 576px) {
+    .section-header {
+        margin-bottom: 30px;
+    }
+    
+    .section-top-label {
+        font-size: 1rem;
+    }
+    
+    .header-subtitle {
+        font-size: 1rem;
+    }
+    
+    .header-line {
+        width: 50px;
+    }
+}
+
 
  .master-diary-card {
      position: relative;
