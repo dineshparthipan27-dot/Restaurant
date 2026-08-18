@@ -452,3 +452,30 @@ body {
         top: -30px;
     }
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 27px;
+}
+
+.logo img {
+    width: 180px;
+}
+
+.ai-logo-icon {
+    font-size: 40px;
+    color: var(--primary-color);
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.ai-logo-text {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.ai-logo-text span {
+    color: var(--primary-color);
+}
