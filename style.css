@@ -61,6 +61,87 @@
  }
 
 
+ /* Container constraint */
+.search-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Outer Glass Pill */
+.search-glass {
+    display: flex;
+    align-items: center;
+    background: rgba(30, 30, 30, 0.4); /* Dark translucent background */
+    border: 1.5px solid rgba(255, 255, 255, 0.25); /* Semi-transparent white border */
+    border-radius: 50px;
+    padding: 6px; /* Creates the gap between the glass edge and the inputs */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    transition: border-color 0.3s ease;
+}
+
+/* Light blue/white Input Field */
+.search-input {
+    flex: 1;
+    height: 52px;
+    border: none;
+    outline: none;
+    background-color: #f0f4fa; /* Matches the very light blueish-white in the image */
+    color: #111;
+    font-size: 1.1rem;
+    padding: 0 20px;
+    border-radius: 45px 0 0 45px; /* Rounded left corners, sharp right corners */
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.search-input::placeholder {
+    color: #8a8a8a;
+}
+
+/* Red Search Button */
+.search-btn {
+    height: 52px;
+    background-color: #df3643; /* Vibrant solid red matching the image */
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    padding: 0 35px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 0 45px 45px 0; /* Sharp left corners, rounded right corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-sizing: border-box;
+}
+
+.search-btn:hover {
+    background-color: #c52834;
+}
+
+.search-btn:active {
+    transform: scale(0.98);
+}
+
+/* Focus state for accessibility */
+.search-glass:focus-within {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Error message styling */
+.error-msg {
+    color: #ff4d4d;
+    font-size: 0.95rem;
+    margin-top: 12px;
+    text-align: left;
+    padding-left: 20px;
+    font-weight: 600;
+    display: none; /* Hidden by default until needed */
+}
+
  .search-glass {
      display: flex;
      align-items: center;
