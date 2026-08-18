@@ -946,6 +946,84 @@
      gap: 5px;
  }
 
+ /* Container for the whole input group */
+.input-wrapper-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 320px; /* Adjust based on your layout needs */
+    font-family: 'Arial', sans-serif;
+}
+
+/* The dark pill-shaped box with the red border */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a; /* Dark background */
+    border: 1.5px solid #ff4d4d; /* Red border */
+    border-radius: 12px; /* Rounded corners */
+    padding: 12px 18px;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.25); /* Subtle red glow */
+    transition: all 0.3s ease;
+}
+
+/* Hover/Focus effect for the wrapper */
+.input-wrapper:hover,
+.input-wrapper:focus-within {
+    box-shadow: 0 0 15px rgba(255, 77, 77, 0.4);
+    border-color: #ff3333;
+}
+
+/* The FontAwesome users icon */
+.input-wrapper i {
+    color: #ffb703; /* Golden yellow */
+    font-size: 1.1rem;
+    margin-right: 12px;
+}
+
+/* The actual select element */
+.input-wrapper select {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff; /* White text for the main selection */
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    width: 100%;
+    
+    /* Optional: uncomment below to hide the default browser arrow */
+    /* appearance: none; */
+    /* -webkit-appearance: none; */
+}
+
+/* Style for the default placeholder option */
+.input-wrapper select:invalid,
+.input-wrapper select option[value=""][disabled] {
+    color: #ffffff; 
+}
+
+/* 
+  Dropdown options list styling
+  Note: Dropdown menus are rendered by the operating system. 
+  CSS styling for <option> tags is limited and varies by browser (Chrome/Safari/Firefox).
+*/
+.input-wrapper select option {
+    background-color: #ffffff; /* White background for the dropdown */
+    color: #333333; /* Dark text for options */
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* Error text styling (hidden by default, can be toggled via JS) */
+.error-text {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    padding-left: 10px;
+    font-weight: 500;
+}
 
  .error-text {
      color: #E63946;

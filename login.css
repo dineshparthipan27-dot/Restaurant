@@ -445,7 +445,7 @@ body {
     }
 
     .glass-stats-wrapper {
-        display: none;
+       flex-wrap: wrap;
     }
 
     .back-link {
