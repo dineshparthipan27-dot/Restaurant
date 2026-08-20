@@ -662,10 +662,10 @@
    ========================================================= */
 .section-header {
     margin-bottom: 40px;
-    text-align: center; /* Matches the image alignment */
+    text-align: center;   
 }
 
-/* "Customer Diaries" */
+  
 .section-top-label {
     font-size: 1.2rem;
     font-weight: 800;
@@ -675,31 +675,31 @@
 }
 
 .text-brandYellow {
-    color: #FFB703 !important; /* Brand Yellow */
+    color: #FFB703 !important;   
 }
 
-/* "Makkal Manasu." */
+  
 .gradient-title {
-    font-size: clamp(2.5rem, 5vw, 3.8rem); /* Auto-scales on mobile */
+    font-size: clamp(2.5rem, 5vw, 3.8rem);   
     font-weight: 900;
-    color: #FFFFFF; /* Changed to White for better visibility on dark bg */
+    color: #FFFFFF;   
     line-height: 1.1;
     margin-bottom: 10px;
     letter-spacing: 1px;
 }
 
-/* "Stories from our beloved guests" */
+  
 .header-subtitle {
     font-size: 1.15rem;
-    color: #888888; /* Muted Grey */
+    color: #888888;   
     font-weight: 500;
     margin-bottom: 20px;
 }
 
-/* The small decorative line below the text */
+  
 
 
-/* --- Mobile Responsiveness --- */
+  
 @media (max-width: 576px) {
     .section-header {
         margin-bottom: 30px;
